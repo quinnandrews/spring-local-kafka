@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "spring.local.kafka.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Whether the embedded, containerized Kafka server should be configured and started.",
+      "defaultValue": true
+    },
+    {
+      "name": "spring.local.kafka.container.image",
+      "type": "java.lang.String",
+      "description": "The name of the Docker Image containing the desired version of Kafka (example: confluentinc/cp-kafka:7.3.5). If undefined, the Testcontainers default of 'confluentinc/cp-kafka:5.4.3' is used.",
+      "defaultValue": "confluentinc/cp-kafka:5.4.3"
+    },
+    {
+      "name": "spring.local.kafka.container.port",
+      "type": "java.lang.Integer",
+      "description": "The port on the Docker Container that maps to the Kafka port inside the container. If undefined, a random port is used, which is preferred when performing Integration Tests. When running the Application locally, however, defining a fixed port is useful, since it gives developers the ability to configure any connecting, external tools or apps with a consistent port. Otherwise, developers must update the port in the external app's configuration if the Application had been restarted since their last use of the app.",
+      "defaultValue": "[random port assignment]"
+    },
+    {
+      "name": "spring.local.kafka.container.log.follow",
+      "type": "java.lang.Boolean",
+      "description": "Whether the Application should log the log output produced by the container.",
+      "defaultValue": false
+    }
+  ]
+}
