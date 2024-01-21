@@ -21,6 +21,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.containers.KafkaContainer;
 
 import java.time.Duration;
+import java.util.List;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,7 +64,10 @@ public class CustomKafkaContainerConfigTest {
         // and the container matches the 'custom' configuration
         assertEquals("confluentinc/cp-kafka:7.3.5", kafkaContainer.getDockerImageName());
         assertEquals(19093, kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT));
-        assertEquals("PLAINTEXT://127.0.0.1:19093", kafkaContainer.getBootstrapServers());
+        final var localhostIp = "PLAINTEXT://127.0.0.1:19093";
+        final var localhost = "PLAINTEXT://localhost:19093";
+        assertTrue(List.of(localhostIp, localhost).contains(kafkaContainer.getBootstrapServers()),
+                "Expected one of [" + localhostIp + ", " + localhost + "], but found " + kafkaContainer.getBootstrapServers());
     }
 
     @Test
