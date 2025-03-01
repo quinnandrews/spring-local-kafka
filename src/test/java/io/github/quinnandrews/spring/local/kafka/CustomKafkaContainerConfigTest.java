@@ -63,6 +63,7 @@ public class CustomKafkaContainerConfigTest {
         assertTrue(kafkaContainer.isRunning());
         // and the container matches the 'custom' configuration
         assertEquals("confluentinc/cp-kafka:7.3.5", kafkaContainer.getDockerImageName());
+        assertEquals("/local_kafka", kafkaContainer.getContainerName());
         assertEquals(19093, kafkaContainer.getMappedPort(KafkaContainer.KAFKA_PORT));
         final var localhostIp = "PLAINTEXT://127.0.0.1:19093";
         final var localhost = "PLAINTEXT://localhost:19093";
